@@ -36,7 +36,6 @@ public class LabelTester extends javax.swing.JFrame {
         jButton1 = new JButton();
         jButton2 = new JButton();
         jCheckBox1 = new JCheckBox();
-        fadedLabel1 = new FadedLabel();
 
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
@@ -63,18 +62,12 @@ public class LabelTester extends javax.swing.JFrame {
             }
         });
 
-        fadedLabel1.setForeground(new Color(255, 51, 51));
-        fadedLabel1.setHorizontalAlignment(SwingConstants.CENTER);
-        fadedLabel1.setText(".");
-        fadedLabel1.setFont(new Font("Tahoma", 1, 11)); // NOI18N
-
         GroupLayout layout = new GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                    .addComponent(fadedLabel1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -95,24 +88,22 @@ public class LabelTester extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton2)
                     .addComponent(jCheckBox1))
-                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 212, Short.MAX_VALUE)
-                .addComponent(fadedLabel1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addContainerGap(237, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        fadedLabel1.setText("Dieser Hinweis wird sich gleich selbst vernichten!");
+//        fadedLabel1.setText("Dieser Hinweis wird sich gleich selbst vernichten!");
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        fadedLabel1.fade(true);
+//        fadedLabel1.fade(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jCheckBox1ActionPerformed(ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
-        fadedLabel1.setAutoFading(jCheckBox1.isSelected());
+//        fadedLabel1.setAutoFading(jCheckBox1.isSelected());
     }//GEN-LAST:event_jCheckBox1ActionPerformed
 
     /**
@@ -153,7 +144,6 @@ public class LabelTester extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private FadedLabel fadedLabel1;
     private JButton jButton1;
     private JButton jButton2;
     private JCheckBox jCheckBox1;

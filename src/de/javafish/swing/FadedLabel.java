@@ -7,20 +7,22 @@ public class FadedLabel extends JLabel {
     private static final long serialVersionUID = 1L;
 
     // Properties
-    private boolean autoFading;
+    private boolean autoFadeIn;
+    private boolean autoFadeOut;
     private int showDuration;
     private int fadeDuration;
+    //
+    // Propertiy initialization
+    {
+        setAutoFadeIn(false);
+        setAutoFadeOut(false);
+        setShowDuration(5000);
+        setFadeDuration(2000);
+    }
     //
     // Attributes
     private boolean fading;
     private Color saveColor;
-    //
-    // Propertiy initialization
-    {
-        setAutoFading(false);
-        setShowDuration(5000);
-        setFadeDuration(2000);
-    }
     
     public FadedLabel() {
     }
@@ -34,10 +36,39 @@ public class FadedLabel extends JLabel {
     }
 
     @Override
+    public void setForeground(Color c) {
+        setColor(c);
+        saveColor = c;
+    }
+
+    private void setAlpha(int alpha) {
+        setColor(new Color(
+                saveColor.getRed(), 
+                saveColor.getGreen(), 
+                saveColor.getBlue(), 
+                alpha)
+        );
+    }
+    
+    private void setColor(Color c) {
+        super.setForeground(c);
+    }
+    
+    @Override
     public void setText(String text) {
-        super.setText(text);
-        if (autoFading && !fading) {
+        if (autoFadeIn) {
+            fadeIn(text);
+        } else {
+            super.setText(text);
+        }
+        if (autoFadeOut && !fading) {
             startFading(showDuration);
+        }
+    }
+    
+    private void fadeIn(String text) {
+        if (fading) {
+            
         }
     }
     
@@ -61,7 +92,7 @@ public class FadedLabel extends JLabel {
         if (!fading) {
             fading = true;
             saveColor = getForeground();
-            new Thread(new Fader(showDuration)).start();
+            new Thread(new FaderOut(showDuration)).start();
         }
     }
 
@@ -71,20 +102,6 @@ public class FadedLabel extends JLabel {
             setForeground(saveColor);
             fading = false;
         }
-    }
-
-    /**
-     * @return the autoFading
-     */
-    public boolean isAutoFading() {
-        return autoFading;
-    }
-
-    /**
-     * @param autoFading the autoFading to set
-     */
-    public void setAutoFading(boolean autoFading) {
-        this.autoFading = autoFading;
     }
 
     /**
@@ -114,13 +131,41 @@ public class FadedLabel extends JLabel {
     public void setFadeDuration(int fadeDuration) {
         this.fadeDuration = fadeDuration;
     }
+
+    /**
+     * @return the autoFadeIn
+     */
+    public boolean isAutoFadeIn() {
+        return autoFadeIn;
+    }
+
+    /**
+     * @param autoFadeIn the autoFadeIn to set
+     */
+    public void setAutoFadeIn(boolean autoFadeIn) {
+        this.autoFadeIn = autoFadeIn;
+    }
+
+    /**
+     * @return the autoFadeOut
+     */
+    public boolean isAutoFadeOut() {
+        return autoFadeOut;
+    }
+
+    /**
+     * @param autoFadeOut the autoFadeOut to set
+     */
+    public void setAutoFadeOut(boolean autoFadeOut) {
+        this.autoFadeOut = autoFadeOut;
+    }
     
     
-    private class Fader implements Runnable {
+    private class FaderOut implements Runnable {
 
         private final int showDuration;
 
-        public Fader(int showDuration) {
+        public FaderOut(int showDuration) {
             this.showDuration = showDuration;
         }
         
@@ -135,11 +180,7 @@ public class FadedLabel extends JLabel {
             int alpha = saveColor.getAlpha();
             int delay = fadeDuration / alpha;
             while (alpha > 0) {
-                setForeground(new Color(
-                        saveColor.getRed(),
-                        saveColor.getGreen(), 
-                        saveColor.getBlue(), 
-                        alpha--));
+                setAlpha(alpha--);
                 try {
                     Thread.sleep(delay);
                 } catch (InterruptedException ex) {
