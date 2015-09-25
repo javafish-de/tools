@@ -51,7 +51,6 @@ public class Mailer {
             }
 
         }));
-//    session.setDebug( true );
     }
 
     public static Mailer getSiebhirnSession(String user, String pass) {
@@ -91,7 +90,6 @@ public class Mailer {
             }
 
         }));
-//    session.setDebug( true );
     }
 
     public Folder openPop3InboxReadOnly() throws MessagingException {
