@@ -19,11 +19,7 @@ public final class Bits {
      * @return
      */
     public static int setBit(int number, int pos, boolean set) {
-        if (set) {
-            return setBit(number, pos);
-        } else {
-            return clearBit(number, pos);
-        }
+        return set ? setBit(number, pos) : clearBit(number, pos);
     }
 
     /**
@@ -36,11 +32,7 @@ public final class Bits {
      * @return
      */
     public static int setBitMask(int number, int mask, boolean set) {
-        if (set) {
-            return setBitMask(number, mask);
-        } else {
-            return clearBitMask(number, mask);
-        }
+        return set ? setBitMask(number, mask) : clearBitMask(number, mask);
     }
 
     /**
