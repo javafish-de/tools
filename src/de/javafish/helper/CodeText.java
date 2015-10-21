@@ -11,48 +11,22 @@ public final class CodeText {
         return getCode(text.getBytes());
     }
 
-//    public static String getCode(char[] text) {
-//        
-////        StringCoding.encode(text, 0, text.length);
-//        
-//        byte by;
-////        List<Byte> bytes = new ArrayList<>();
-//        byte[] b;           // the byte-Array for the given text
-//
-//        // convert the char-Array into a byte-Array, consider a char is two byte
-//        b = new byte[text.length << 1];
-//        
-//        for (int i = 0; i < text.length; i++) {
-//            byte bpos = (byte) (i << 1);
-//
-//            b[bpos] = (byte) ((text[i] & 0xFF00) >> 8);
-//            b[bpos+1] = (byte) (text[i] & 0x00FF);
-//            
-////            if ((by = (byte) ((text[i] & 0xFF00) >> 8)) != 0) {
-////                bytes.add(by);
-////            }
-////            
-////            if ((by = (byte) (text[i] & 0x00FF)) != 0) {
-////                bytes.add(by);
-////            }
-//        }
-//        
-//        return getCode(b);
-//    }
-
     public static String getCode(byte[] ba) {
         
-        System.out.println(ba.length);
+        // the resulting hex-String
+        StringBuilder s = new StringBuilder(); 
         
-        String s = "";      // the resulting hex-String
-        MessageDigest md;   // the MessageDigest
-        byte[] d;           // the resulting byte-Array
+        // the MessageDigest
+        MessageDigest md;   
+        
+        // the resulting byte-Array
+        byte[] d;           
         
         // get the code
         try {
             // create a MessageDigest
             md = MessageDigest.getInstance("SHA-256");
-            
+            System.out.println(md.getClass());
             // send the text (as a byte-Array) to the Digest
             md.update(ba);
             
@@ -61,20 +35,18 @@ public final class CodeText {
 
             // convert the resulting byte-Array to a String
             for (byte b : d) {
-                s += String.format("%02x", b);
+                s.append(String.format("%02x", b));
             }
         } catch (NoSuchAlgorithmException ex) {
             System.out.println(ex);
         }
 
-        return s;
+        return s.toString();
     }
     
     public static void main(String[] args) {
         String pw = "password3";
         System.out.println(CodeText.getCode(pw));
-//        System.out.println(CodeText.getCode(pw.toCharArray()));
-        System.out.println(CodeText.getCode(pw.getBytes()));
     }
 }
 
