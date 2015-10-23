@@ -10,6 +10,10 @@ public final class CodeText {
     public static String getCode(String text) {
         return getCode(text.getBytes());
     }
+    
+    public static String getCode(char[] pw) {
+        return getCode(pw.toString());
+    }
 
     public static String getCode(byte[] ba) {
         
@@ -26,7 +30,7 @@ public final class CodeText {
         try {
             // create a MessageDigest
             md = MessageDigest.getInstance("SHA-256");
-            System.out.println(md.getClass());
+            
             // send the text (as a byte-Array) to the Digest
             md.update(ba);
             
@@ -45,14 +49,8 @@ public final class CodeText {
     }
     
     public static void main(String[] args) {
-        String pw = "password3";
+        String pw = "geheim";
+        System.out.println(pw.toCharArray());
         System.out.println(CodeText.getCode(pw));
     }
 }
-
-/*
- * char ch;  2 Byte - 16 Bit
- * byte by1, by2;  1 Byte -  8 Bit
- * by1 = (ch & 0xFF00) >> 8;
- * by2 = ch & 0x00FF;
- */
