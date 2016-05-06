@@ -13,16 +13,16 @@ public abstract class HtmlSimpleTag implements HtmlTag {
     /**
      * Die Html-Bezeichnung des Tag.
      */
-    private String name;
+    private final String name;
     /**
      * Eine Liste mit den für dieses Tag gültigen Attribut-Bezeichnungen.
      */
-    private List<String> validAttributes =
-            new ArrayList<String>(Arrays.asList(new String[]{"class", "id", "style", "title"}));
+    private final List<String> validAttributes =
+            new ArrayList<>(Arrays.asList(new String[]{"class", "id", "style", "title"}));
     /**
      * Die Liste mit den für dieses Tag verwendeten Attributen.
      */
-    private List<HtmlAttribute> attributes = new LinkedList<HtmlAttribute>();
+    private final List<HtmlAttribute> attributes = new LinkedList<>();
 
     /**
      * Das HtmlTag mit dem angegebenen Namen wird erzeugt.
@@ -67,11 +67,7 @@ public abstract class HtmlSimpleTag implements HtmlTag {
         return validAttributes.contains(attribute);
     }
 
-    /**
-     * Fügt der Liste der gültigen Attribute weitere hinzu.
-     * 
-     * @param validAttributes 
-     */
+ 
     public void setValidAttributes(String[] validAttributes) {
         this.validAttributes.addAll(Arrays.asList(validAttributes));
     }

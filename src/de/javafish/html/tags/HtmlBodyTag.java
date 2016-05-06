@@ -13,7 +13,7 @@ public abstract class HtmlBodyTag extends HtmlSimpleTag {
     /**
      * Eine Liste mit den Html-Tags, die in diesem Tag integriert sind.
      */
-    private List<HtmlTag> innerTags = new LinkedList<HtmlTag>();
+    private List<HtmlTag> innerTags = new LinkedList<>();
     /**
      * Der Text, der zwischen öffnendem und schliessendem Tag erscheint.
      */
@@ -35,9 +35,7 @@ public abstract class HtmlBodyTag extends HtmlSimpleTag {
 
     private String getInnerTags() {
         String s = "";
-        for (HtmlTag htmlTag : innerTags) {
-            s += htmlTag.getTagString();
-        }
+        s = innerTags.stream().map((htmlTag) -> htmlTag.getTagString()).reduce(s, String::concat);
         return s;
     }
 

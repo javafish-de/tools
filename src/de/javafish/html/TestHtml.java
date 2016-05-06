@@ -2,7 +2,7 @@ package de.javafish.html;
 
 public class TestHtml {
 
-    HtmlPage page = new HtmlPage("Eigene Webseite");
+    private final HtmlPage page = new HtmlPage("Eigene Webseite");
     
     public static void main(String[] args) {
         new TestHtml().go();

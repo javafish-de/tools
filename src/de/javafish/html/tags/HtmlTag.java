@@ -25,7 +25,7 @@ public interface HtmlTag {
     public void addAttribute(String attribute);
 
     /**
-     * Fügt dem HtmlTag ein Attribut mit Werttangabe hinzu.
+     * Fügt dem HtmlTag ein Attribut mit Wertangabe hinzu.
      *
      * @param attribute
      * @param value

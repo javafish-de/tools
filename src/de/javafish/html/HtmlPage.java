@@ -22,9 +22,9 @@ import de.javafish.html.tags.*;
  */
 public class HtmlPage extends HtmlBody {
 
-    private HtmlTagHtml htmlTag = new HtmlTagHtml();
-    private HtmlTagHead headTag = new HtmlTagHead();
-    private HtmlTagTitle titleTag;
+    private final HtmlTagHtml htmlTag = new HtmlTagHtml();
+    private final HtmlTagHead headTag = new HtmlTagHead();
+    private final HtmlTagTitle titleTag;
 
     /**
      * Erzeugt eine Html-Seite mit dem angegebenen Titel.

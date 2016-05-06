@@ -9,9 +9,10 @@ public class HtmlTagH extends HtmlBodyTag {
 
     /**
      * Erzeugt ein leeres HtmlTag.
+     * @param ordnung
      */
-    public HtmlTagH(int i) {
-        super("h" + Math.max(1, Math.min(6, i)));
+    public HtmlTagH(int ordnung) {
+        super("h" + Math.max(1, Math.min(6, ordnung)));
         setValidAttributes(new String[]{"align"});
     }
 

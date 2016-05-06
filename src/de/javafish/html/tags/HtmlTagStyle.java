@@ -13,7 +13,7 @@ public class HtmlTagStyle extends HtmlBodyTag {
      */
     public HtmlTagStyle() {
         super("style");
-        setValidAttributes(new String[]{"media", "tytle", "type"});
+        setValidAttributes(new String[]{"media", "title", "type"});
     }
 
 }
