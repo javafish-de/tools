@@ -33,5 +33,15 @@ public final class SwingTools {
         pos.y = screenBounds.y + (screenBounds.height / 2) - (dimension.height / 2);
         
         return pos;
-    }    
+    }
+
+    /**
+     * Positioniert den übergebenen {@code frame} auf dem mit {@code screen}
+     * benannten Monitor.
+     * @param screen
+     * @param frame 
+     */
+    public static void centerOnScreen(int screen, Frame frame) {
+        frame.setLocation(getCenterOnScreen(screen, frame.getSize()));
+    }
 }
