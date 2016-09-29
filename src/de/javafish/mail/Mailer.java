@@ -8,7 +8,7 @@ import javax.mail.internet.*;
 
 public class Mailer {
 
-    private Session session;
+    private final Session session;
     private Folder folder;
     
     private Mailer(Session session) {
