@@ -36,8 +36,8 @@ public class Mailer {
         
 //        props.setProperty("mail.smtp.starttls.enable", "false");
         
-        props.setProperty("mail.smtp.port", "25"); // 25 alternativ 587
-        props.setProperty("mail.smtp.socketFactory.port", "25");
+        props.setProperty("mail.smtp.port", "465"); // 25 alternativ 587
+        props.setProperty("mail.smtp.socketFactory.port", "465");
         props.setProperty("mail.smtp.socketFactory.class",
                 "javax.net.ssl.SSLSocketFactory");
         props.setProperty("mail.smtp.socketFactory.fallback", "false");
