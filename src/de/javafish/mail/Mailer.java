@@ -16,12 +16,15 @@ public class Mailer {
     }
 
     public static Mailer getStratoSession(final String user, final String pass) {
+        return getSession(user, pass, "pop3.strato.de", "smtp.strato.de");
+    }
+    
+    public static Mailer getSession(final String user, final String pass, String pop3Host, String smtpHost) {
         
-        System.out.println("*** " + user + " *** " + pass + " ***");
         final Properties props = new Properties();
 
         // Zum Empfangen
-        props.setProperty("mail.pop3.host", "pop3.strato.de");
+        props.setProperty("mail.pop3.host", pop3Host);
         props.setProperty("mail.pop3.user", user);
         props.setProperty("mail.pop3.password", pass);
         props.setProperty("mail.pop3.port", "995");
@@ -29,12 +32,11 @@ public class Mailer {
         props.setProperty("mail.pop3.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
 
         // Zum Senden
-        props.setProperty("mail.smtp.host", "smtp.strato.de");
+        props.setProperty("mail.smtp.host", smtpHost);
         props.setProperty("mail.smtp.user", user);
         props.setProperty("mail.smtp.password", pass);
         props.setProperty("mail.smtp.auth", "true");
         
-//        props.setProperty("mail.smtp.starttls.enable", "true");
         props.setProperty("mail.smtp.ssl.enable", "true");
         
         String port = "465"; // 25 / 465 / 587
@@ -42,19 +44,11 @@ public class Mailer {
         props.setProperty("mail.smtp.socketFactory.port", port);
         props.setProperty("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
         props.setProperty("mail.smtp.socketFactory.fallback", "false");
-        props.setProperty("mail.smtp.ssl.trust", "*");
-        props.setProperty("mail.debug", "true");
+        props.setProperty("mail.smtp.ssl.trust", smtpHost);
 
-        props.list(System.out);
-        System.out.println("");
-        
-//        return new Mailer(Session.getInstance(props));
         return new Mailer(Session.getInstance(props, new javax.mail.Authenticator() {
             @Override
             protected PasswordAuthentication getPasswordAuthentication() {
-//                String user = props.getProperty("mail.pop3.user");
-//                String pass = props.getProperty("mail.pop3.password");
-                System.out.println("*** " + user + " *** " + pass + " ***");
                 return new PasswordAuthentication(user, pass);
             }
         }));
