@@ -39,7 +39,7 @@ public class Mailer {
         
         props.setProperty("mail.smtp.ssl.enable", "true");
         
-        String port = "465"; // 25 / 465 / 587
+        String port = "587"; // 25 / 465 / 587
         props.setProperty("mail.smtp.port", port);
         props.setProperty("mail.smtp.socketFactory.port", port);
         props.setProperty("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");

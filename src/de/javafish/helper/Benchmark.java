@@ -1,6 +1,7 @@
 package de.javafish.helper;
 
 import java.text.*;
+import java.util.concurrent.atomic.*;
 
 /**
  * Ein Benchmark, der die zeitliche Differenz zwischen zwei Zeitpunkten
@@ -68,7 +69,8 @@ public class Benchmark {
     /**
      * Zählt die erzeugten Benchmark-Objekte mit.
      */
-    private static int counter;
+//    private static int counter;
+    private static AtomicInteger counter = new AtomicInteger();
 
     /**
      * Erzeugt einen Benchmark. Der Benchmark erhält einen Namen.
@@ -78,7 +80,8 @@ public class Benchmark {
     public Benchmark(String name) {
         this.name = name;
         this.status = BenchmarkStatus.WAITING;
-        counter++;
+//        counter++;
+//        counter.getAndIncrement();
     }
 
     /**
@@ -86,7 +89,7 @@ public class Benchmark {
      * "Benchmark-n" vergeben (n - lfd. Nr. des Benchmark-Objekts).
      */
     public Benchmark() {
-        this("Benchmark-" + counter);
+        this("Benchmark-" + counter.getAndIncrement());
     }
 
     /**
